@@ -28,7 +28,7 @@ class New_Siri:
         self.text = ""
         self.background_text = ""
         self.keyword_detected = False
-        self.r.energy_threshold = 1000
+        self.r.energy_threshold = 1000  # Play with this
 
 
 
@@ -47,7 +47,7 @@ class New_Siri:
                 return self.text
             except sr.UnknownValueError:
                 print("Sorry I couldn't understand what you said. Can you repeat?\n")
-                self.alina_talk("Sorry I couldn't understand what you said. Can you repeat?")
+                self.siri_talk("Sorry I couldn't understand what you said. Can you repeat?")
                 pass
 
 
@@ -71,7 +71,7 @@ class New_Siri:
         
         
     # convert text to speech
-    def alina_talk(self, text):
+    def siri_talk(self, text):
         # create audio data
         file_name = "audio_data.mp3"
 
@@ -96,7 +96,7 @@ class New_Siri:
             pass
 
     # create a function which will give a reply based the input speech/text
-    def alina_reply(self, text):
+    def siri_reply(self, text):
         conversation = [
             {"role": "user", "content": text}
         ]
@@ -106,9 +106,9 @@ class New_Siri:
             messages=conversation,
         )
 
-        alina_response = response['choices'][0]['message']['content']
-        print(f"The response for your message is: {alina_response}\n")
-        return alina_response
+        siri_response = response['choices'][0]['message']['content']
+        print(f"The response for your message is: {siri_response}\n")
+        return siri_response
 
 
     '''             ----------------
@@ -132,23 +132,22 @@ class New_Siri:
 main_listener = New_Siri()
 background_microphone = New_Siri()
 
-main_listener.alina_talk("Can you please tell me your name?")
+main_listener.siri_talk("Can you please tell me your name?")
 t1 = threading.Thread(target=main_listener.main_microphone(), args=[])
 
 if t1 is not None:
-    main_listener.alina_talk(f"Hi {t1} what can I do for you?")
+    main_listener.siri_talk(f"Hi {t1} what can I do for you?")
 else:
     sys.exit()
 
 t2 = threading.Thread(target=background_microphone.background_listener(), args=[])
-background_microphone.background_listener()
 
 while True:
     user_text = main_listener.main_microphone()
-    alina_response = main_listener.alina_reply(main_listener.text)
+    siri_response = main_listener.siri_reply(main_listener.text)
     
     if user_text is not None:
-        main_listener.alina_talk(alina_response)
+        main_listener.siri_talk(siri_response)
         playsound.playsound("receive_sound.wav")
 
     main_listener.openai_api_usage()
