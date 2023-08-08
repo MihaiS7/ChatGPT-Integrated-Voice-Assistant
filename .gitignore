@@ -1,0 +1,14 @@
+.DS_Store
+.env
+.vscode/
+bin/
+include/
+lib/
+pyvenv.cfg
+receive_sound.wav
+exercise.py
+second_test.py
+share  
+share
+test.py
+third_test.py
