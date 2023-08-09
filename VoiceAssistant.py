@@ -28,7 +28,7 @@ class New_Siri:
         self.text = ""
         self.background_text = ""
         self.keyword_detected = False
-        self.r.energy_threshold = 1000  # Play with this
+        self.r.energy_threshold = 1000
 
 
 
@@ -95,7 +95,7 @@ class New_Siri:
         except OSError:
             pass
 
-    # create a function which will give a reply based the input speech/text
+    
     def siri_reply(self, text):
         conversation = [
             {"role": "user", "content": text}
