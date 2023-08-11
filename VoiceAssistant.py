@@ -22,7 +22,7 @@ load_dotenv()
 class New_Siri:
     def __init__(self):
         self.r = sr.Recognizer()
-        self.m = sr.Microphone.list_microphone_names().index('MacBook Pro Microphone')
+        self.m = sr.Microphone.list_microphone_names().index('MacBook Pro Microphone') # You can use 
         self.keyWord = "stop"
         self.is_running = True
         self.text = ""
@@ -30,10 +30,8 @@ class New_Siri:
         self.keyword_detected = False
         self.r.energy_threshold = 1000
 
-
-
     # OpenAI - ChatGpt3 API
-    openai.api_key = os.getenv("OPENAI_API_KEY")
+    openai.api_key = os.getenv("OPENAI_API_KEY") # You should set your OPENAI API key in your env
 
     def main_microphone(self):
         with sr.Microphone(device_index=self.m) as source:
