@@ -35,13 +35,13 @@ class New_Siri:
     openai.api_key = os.getenv("OPENAI_API_KEY") # You should set your OPENAI API key in your env
 
     def main_microphone(self):
-        with sr.Microphone(device_index=self.m) as source:
+        with sr.Microphone(device_index=self.m) as source: # If you don't want a specific microphone, use self.m
             print("Say something..\n")
             self.r.adjust_for_ambient_noise(source)
             audio = self.r.listen(source)
             try:
                 print("Recognizing...\n")
-                self.text = self.r.recognize_google(audio)
+                self.text = self.r.recognize_google(audio) # Using google default API recognition
                 print(f"You said: {self.text}\n")
                 return self.text
             except sr.UnknownValueError:
@@ -52,7 +52,7 @@ class New_Siri:
 
     def callback(self, recognizer, audio):
         try:
-            self.background_text = recognizer.recognize_google(audio)
+            self.background_text = recognizer.recognize_google(audio) # Using same google recognition for background
             print(f"Background listener heard: {self.background_text}\n")
             if self.keyWord.lower() in self.background_text.lower():
                 print("Keyword detected in the speech.\n")
