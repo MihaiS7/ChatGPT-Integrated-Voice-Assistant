@@ -22,7 +22,8 @@ load_dotenv()
 class New_Siri:
     def __init__(self):
         self.r = sr.Recognizer()
-        self.m = sr.Microphone.list_microphone_names().index('MacBook Pro Microphone') # You can use 
+        self.m = sr.Microphone.list_microphone_names().index('MacBook Pro Microphone') # You can use your own microphone, or just delete the line and
+                                                                                       # and left only the sr.Microphone()
         self.keyWord = "stop"
         self.is_running = True
         self.text = ""
