@@ -82,7 +82,7 @@ class New_Siri:
         
         # Set the playback speed at (1.5)
         audio = AudioSegment.from_file(file_name)
-        fast_audio = audio.speedup(playback_speed=1.3)
+        fast_audio = audio.speedup(playback_speed=1.3) # Changing the speed of speech as you would like
         fast_audio.export("output.mp3", format='mp3')
 
         # play file
@@ -132,14 +132,15 @@ main_listener = New_Siri()
 background_microphone = New_Siri()
 
 main_listener.siri_talk("Can you please tell me your name?")
-t1 = threading.Thread(target=main_listener.main_microphone(), args=[])
+t1 = threading.Thread(target=main_listener.main_microphone(), args=[]) # Using first thread for the main microphone
 
 if t1 is not None:
     main_listener.siri_talk(f"Hi {t1} what can I do for you?")
 else:
     sys.exit()
 
-t2 = threading.Thread(target=background_microphone.background_listener(), args=[])
+t2 = threading.Thread(target=                                               # Using the second microphone to work in                                                       
+                      background_microphone.background_listener(), args=[]) # parallel with the main one
 
 while True:
     user_text = main_listener.main_microphone()
