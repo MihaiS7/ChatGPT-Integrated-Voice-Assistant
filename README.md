@@ -1,10 +1,10 @@
 # ChatGPT-Integrated-Voice-Assistant
 
-Welcome to the prototype of a new Voice Assistant integrating ChatGPT for an enhanced user experience. This project is a personal purpose, open to improvements, ideas, and suggestions. However, its usage is intended strictly for personal purposes!
+Welcome to the prototype of a new Voice Assistant integrating ChatGPT for a better user experience. This project is a personal purpose, open to improvements, ideas, and suggestions. However, its usage is intended strictly for personal purposes!
 
 ## To-Do List:
 
-- Implement wake word functionality: Trigger the assistant by saying "Hi Alina."
+- Implement wake word functionality: Trigger the assistant by saying "Hi Buxi."
 - Incorporate diverse features:
   - Ask for the current time
   - Inquire about the weather
