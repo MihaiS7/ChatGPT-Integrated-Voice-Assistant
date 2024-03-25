@@ -4,7 +4,7 @@ Welcome to the prototype of a new Voice Assistant integrating ChatGPT for a bett
 
 ## To-Do List:
 
-- Implement wake word functionality: Trigger the assistant by saying "Hi Buxi."
+- Implement wake word functionality: Trigger the assistant by saying "Hi Bixi."
 - Incorporate diverse features:
   - Ask for the current time
   - Inquire about the weather
@@ -16,6 +16,6 @@ Welcome to the prototype of a new Voice Assistant integrating ChatGPT for a bett
 
 ## Contributors:
 
-- Toretto99
+- MihaiS7
 
 
