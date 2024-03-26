@@ -9,7 +9,6 @@ import playsound
 import os
 from openai import OpenAI
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 from pydub import AudioSegment
 from dotenv import load_dotenv
 import sys
@@ -20,8 +19,11 @@ import threading
                     ----------------
 '''          
 
-sys.path.append('/ChatGPT-Integrated-Voice-Assistant/ffmpeg-6.1.1')
 load_dotenv()
+
+# OpenAI - ChatGpt3 API
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# You should set your OPENAI API key in your env
 
 class New_Siri:
     def __init__(self):
@@ -35,8 +37,6 @@ class New_Siri:
         self.keyword_detected = False
         self.r.energy_threshold = 1000
 
-    # OpenAI - ChatGpt3 API
-     # You should set your OPENAI API key in your env
 
     def main_microphone(self):
         with sr.Microphone(device_index=self.m) as source: # If you don't want a specific microphone, use self.m
@@ -118,7 +118,7 @@ class New_Siri:
     '''
 
     def openai_api_usage(self):
-        request = openai.api_requestor.APIRequestor()
+        request = OpenAI.api_requestor.APIRequestor()
         response = request.request("GET", "/usage?date=2023-08-01")[0];
         price = response.data.current_usage_usd
         print(f"This is the currently cost for OpenAi API: {price}")
@@ -141,8 +141,8 @@ if t1 is not None:
 else:
     sys.exit()
 
-t2 = threading.Thread(target=                                               # Using the second microphone to work in                                                       
-                      background_microphone.background_listener(), args=[]) # parallel with the main one
+# t2 = threading.Thread(target=                                               # Using the second microphone to work in                                                       
+#                       background_microphone.background_listener(), args=[]) # parallel with the main one
 
 while True:
     user_text = main_listener.main_microphone()
