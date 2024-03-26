@@ -157,3 +157,4 @@ while True:
     if background_microphone.keyword_detected:
         break
 
+
