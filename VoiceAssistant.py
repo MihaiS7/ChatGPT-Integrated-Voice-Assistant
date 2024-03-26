@@ -7,22 +7,26 @@ import speech_recognition as sr
 from gtts import gTTS
 import playsound
 import os
-import openai
+from openai import OpenAI
+
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 from pydub import AudioSegment
 from dotenv import load_dotenv
 import sys
 import threading
+
 '''                 ----------------
                     Voice Assistant Coding Section
                     ----------------
 '''          
 
+sys.path.append('/ChatGPT-Integrated-Voice-Assistant/ffmpeg-6.1.1')
 load_dotenv()
 
 class New_Siri:
     def __init__(self):
         self.r = sr.Recognizer()
-        self.m = sr.Microphone.list_microphone_names().index('MacBook Pro Microphone') # You can use your own microphone, or just delete the line and
+        self.m = sr.Microphone.list_microphone_names().index('MacBook Pro Microphone') # You can use a specific microphone, or just delete the line and
                                                                                        # and left only the sr.Microphone()
         self.keyWord = "stop"
         self.is_running = True
@@ -32,7 +36,7 @@ class New_Siri:
         self.r.energy_threshold = 1000
 
     # OpenAI - ChatGpt3 API
-    openai.api_key = os.getenv("OPENAI_API_KEY") # You should set your OPENAI API key in your env
+     # You should set your OPENAI API key in your env
 
     def main_microphone(self):
         with sr.Microphone(device_index=self.m) as source: # If you don't want a specific microphone, use self.m
@@ -100,12 +104,10 @@ class New_Siri:
             {"role": "user", "content": text}
         ]
 
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=conversation,
-        )
+        response = client.chat.completions.create(model="gpt-3.5-turbo",
+        messages=conversation)
 
-        siri_response = response['choices'][0]['message']['content']
+        siri_response = response.choices[0].message.content
         print(f"The response for your message is: {siri_response}\n")
         return siri_response
 
@@ -118,7 +120,7 @@ class New_Siri:
     def openai_api_usage(self):
         request = openai.api_requestor.APIRequestor()
         response = request.request("GET", "/usage?date=2023-08-01")[0];
-        price = response.data['current_usage_usd']
+        price = response.data.current_usage_usd
         print(f"This is the currently cost for OpenAi API: {price}")
 
 
